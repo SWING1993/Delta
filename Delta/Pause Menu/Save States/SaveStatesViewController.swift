@@ -104,12 +104,12 @@ extension SaveStatesViewController
         switch self.mode
         {
         case .saving:
-            self.title = NSLocalizedString("Save State", comment: "")
-            self.placeholderView.detailTextLabel.text = NSLocalizedString("You can create a new save state by pressing the + button in the top right.", comment: "")
+            self.title = NSLocalizedString("存档", comment: "")
+            self.placeholderView.detailTextLabel.text = NSLocalizedString("您可以通过按右上角的 + 按钮来创建新的存档。", comment: "")
             
         case .loading:
-            self.title = NSLocalizedString("Load State", comment: "")
-            self.placeholderView.detailTextLabel.text = NSLocalizedString("You can create a new save state by pressing the Save State option in the pause menu.", comment: "")
+            self.title = NSLocalizedString("加载存档", comment: "")
+            self.placeholderView.detailTextLabel.text = NSLocalizedString("您可以通过按暂停菜单中的“存档”选项来创建新的存档。", comment: "")
             self.navigationItem.rightBarButtonItems?.removeFirst()
         }
         
@@ -157,7 +157,7 @@ private extension SaveStatesViewController
         
         self.placeholderView = RSTPlaceholderView(frame: CGRect(x: 0, y: 0, width: self.vibrancyView.bounds.width, height: self.vibrancyView.bounds.height))
         self.placeholderView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.placeholderView.textLabel.text = NSLocalizedString("No Save States", comment: "")
+        self.placeholderView.textLabel.text = NSLocalizedString("没有存档", comment: "")
         self.placeholderView.textLabel.textColor = UIColor.white
         self.placeholderView.detailTextLabel.textColor = UIColor.white
         self.vibrancyView.contentView.addSubview(self.placeholderView)
@@ -278,10 +278,10 @@ private extension SaveStatesViewController
         
         switch section
         {
-        case .auto: title = NSLocalizedString("Auto Save", comment: "")
-        case .quick: title = NSLocalizedString("Quick Save", comment: "")
-        case .general: title = NSLocalizedString("General", comment: "")
-        case .locked: title = NSLocalizedString("Locked", comment: "")
+        case .auto: title = NSLocalizedString("自动存档", comment: "")
+        case .quick: title = NSLocalizedString("快速存档", comment: "")
+        case .general: title = NSLocalizedString("一般", comment: "")
+        case .locked: title = NSLocalizedString("锁定", comment: "")
         }
         
         headerView.textLabel.text = title
@@ -357,8 +357,8 @@ private extension SaveStatesViewController
     
     func deleteSaveState(_ saveState: SaveState)
     {
-        let confirmationAlertController = UIAlertController(title: NSLocalizedString("Delete Save State?", comment: ""), message: NSLocalizedString("Are you sure you want to delete this save state? This cannot be undone.", comment: ""), preferredStyle: .alert)
-        confirmationAlertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .default, handler: { action in
+        let confirmationAlertController = UIAlertController(title: NSLocalizedString("删除存档？", comment: ""), message: NSLocalizedString("您确定要删除此存档吗？这不能被撤消。", comment: ""), preferredStyle: .alert)
+        confirmationAlertController.addAction(UIAlertAction(title: NSLocalizedString("删除", comment: ""), style: .default, handler: { action in
             
             DatabaseManager.shared.performBackgroundTask { (context) in
                 let temporarySaveState = context.object(with: saveState.objectID)
@@ -367,22 +367,22 @@ private extension SaveStatesViewController
             }
             
         }))
-        confirmationAlertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        confirmationAlertController.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
         
         self.present(confirmationAlertController, animated: true, completion: nil)
     }
     
     func renameSaveState(_ saveState: SaveState)
     {
-        let alertController = UIAlertController(title: NSLocalizedString("Rename Save State", comment: ""), message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("重命名存档", comment: ""), message: nil, preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.text = saveState.name
             textField.placeholder = NSLocalizedString("Name", comment: "")
             textField.autocapitalizationType = .words
             textField.returnKeyType = .done
         }
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Rename", comment: ""), style: .default, handler: { [unowned alertController] (action) in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("重命名", comment: ""), style: .default, handler: { [unowned alertController] (action) in
             self.rename(saveState, with: alertController.textFields?.first?.text)
         }))
         self.present(alertController, animated: true, completion: nil)
@@ -411,16 +411,16 @@ private extension SaveStatesViewController
         
         if #available(iOS 13, *)
         {
-            message = NSLocalizedString("The Preview Save State is loaded whenever you long press this game from the Main Menu. Are you sure you want to change it?", comment: "")
+            message = NSLocalizedString("每当您从主菜单长按此游戏时，就会加载预览存档，您确定要更改吗？", comment: "")
         }
         else
         {
-            message = NSLocalizedString("The Preview Save State is loaded whenever you 3D Touch this game from the Main Menu. Are you sure you want to change it?", comment: "")
+            message = NSLocalizedString("每当您从主菜单 3D Touch 此游戏时，就会加载预览存档，您确定要更改吗？", comment: "")
         }
         
-        let alertController = UIAlertController(title: NSLocalizedString("Change Preview Save State?", comment: ""), message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Change", comment: ""), style: .default, handler: { (action) in
+        let alertController = UIAlertController(title: NSLocalizedString("修改预览存档？", comment: ""), message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("修改", comment: ""), style: .default, handler: { (action) in
             
             DatabaseManager.shared.performBackgroundTask { (context) in
                 let game = context.object(with: self.game.objectID) as! Game
@@ -513,24 +513,24 @@ private extension SaveStatesViewController
         {
             if saveState.game?.previewSaveState != saveState
             {
-                let previewAction = Action(title: NSLocalizedString("Set as Preview Save State", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "eye.fill"), action: { [unowned self] action in
+                let previewAction = Action(title: NSLocalizedString("设置为预览存档", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "eye.fill"), action: { [unowned self] action in
                     self.updatePreviewSaveState(saveState)
                 })
                 actions.append(previewAction)
             }
             else
             {
-                let previewAction = Action(title: NSLocalizedString("Remove as Preview Save State", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "eye.slash.fill"), action: { [unowned self] action in
+                let previewAction = Action(title: NSLocalizedString("删除预览存档", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "eye.slash.fill"), action: { [unowned self] action in
                     self.updatePreviewSaveState(nil)
                 })
                 actions.append(previewAction)
             }
         }
         
-        let cancelAction = Action(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, action: nil)
+        let cancelAction = Action(title: NSLocalizedString("取消", comment: ""), style: .cancel, action: nil)
         actions.append(cancelAction)
         
-        let renameAction = Action(title: NSLocalizedString("Rename", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "pencil.and.ellipsis.rectangle"), action: { [unowned self] action in
+        let renameAction = Action(title: NSLocalizedString("重命名", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "pencil.and.ellipsis.rectangle"), action: { [unowned self] action in
             self.renameSaveState(saveState)
         })
         actions.append(renameAction)
@@ -540,19 +540,19 @@ private extension SaveStatesViewController
         case .auto: break
         case .quick: break
         case .general:
-            let lockAction = Action(title: NSLocalizedString("Lock", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "lock.fill"), action: { [unowned self] action in
+            let lockAction = Action(title: NSLocalizedString("锁定", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "lock.fill"), action: { [unowned self] action in
                 self.lockSaveState(saveState)
             })
             actions.append(lockAction)
             
         case .locked:
-            let unlockAction = Action(title: NSLocalizedString("Unlock", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "lock.open.fill"), action: { [unowned self] action in
+            let unlockAction = Action(title: NSLocalizedString("解锁", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "lock.open.fill"), action: { [unowned self] action in
                 self.unlockSaveState(saveState)
             })
             actions.append(unlockAction)
         }
         
-        let deleteAction = Action(title: NSLocalizedString("Delete", comment: ""), style: .destructive, image: UIImage(symbolNameIfAvailable: "trash"), action: { [unowned self] action in
+        let deleteAction = Action(title: NSLocalizedString("删除", comment: ""), style: .destructive, image: UIImage(symbolNameIfAvailable: "trash"), action: { [unowned self] action in
             self.deleteSaveState(saveState)
         })
         actions.append(deleteAction)
@@ -729,7 +729,7 @@ extension SaveStatesViewController
                 }
                 
             case .locked:
-                let alertController = UIAlertController(title: NSLocalizedString("Cannot Modify Locked Save State", comment: ""), message: NSLocalizedString("This save state must first be unlocked before it can be modified.", comment: ""), preferredStyle: .alert)
+                let alertController = UIAlertController(title: NSLocalizedString("无法修改锁定的存档", comment: ""), message: NSLocalizedString("此存档必须先解锁，然后才能修改。", comment: ""), preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
                 

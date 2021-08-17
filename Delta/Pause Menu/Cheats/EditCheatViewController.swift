@@ -61,13 +61,13 @@ class EditCheatViewController: UITableViewController
     {
         guard let cheat = self.cheat else { return [] }
         
-        let copyCodeAction = UIPreviewAction(title: NSLocalizedString("Copy Code", comment: ""), style: .default) { (action, viewController) in
+        let copyCodeAction = UIPreviewAction(title: NSLocalizedString("复制代码", comment: ""), style: .default) { (action, viewController) in
             UIPasteboard.general.string = cheat.code
         }
         
         let presentingViewController = self.presentingViewController!
         
-        let editCheatAction = UIPreviewAction(title: NSLocalizedString("Edit", comment: ""), style: .default) { (action, viewController) in
+        let editCheatAction = UIPreviewAction(title: NSLocalizedString("编辑", comment: ""), style: .default) { (action, viewController) in
             // Delaying until next run loop prevents self from being dismissed immediately
             DispatchQueue.main.async {
                 let editCheatViewController = viewController as! EditCheatViewController
@@ -76,7 +76,7 @@ class EditCheatViewController: UITableViewController
             }
         }
         
-        let deleteAction = UIPreviewAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { [unowned self] (action, viewController) in
+        let deleteAction = UIPreviewAction(title: NSLocalizedString("删除", comment: ""), style: .destructive) { [unowned self] (action, viewController) in
             self.delegate?.editCheatViewController(self, deactivateCheat: cheat)
             
             DatabaseManager.shared.performBackgroundTask { (context) in
@@ -86,10 +86,10 @@ class EditCheatViewController: UITableViewController
             }
         }
         
-        let cancelDeleteAction = UIPreviewAction(title: NSLocalizedString("Cancel", comment: ""), style: .default) { (action, viewController) in
+        let cancelDeleteAction = UIPreviewAction(title: NSLocalizedString("取消", comment: ""), style: .default) { (action, viewController) in
         }
         
-        let deleteActionGroup = UIPreviewActionGroup(title: NSLocalizedString("Delete", comment: ""), style: .destructive, actions: [deleteAction, cancelDeleteAction])
+        let deleteActionGroup = UIPreviewActionGroup(title: NSLocalizedString("删除", comment: ""), style: .destructive, actions: [deleteAction, cancelDeleteAction])
         
         return [copyCodeAction, editCheatAction, deleteActionGroup]
     }
@@ -134,7 +134,7 @@ extension EditCheatViewController
         
         if name.count == 0
         {
-            self.title = NSLocalizedString("Cheat", comment: "")
+            self.title = NSLocalizedString("金手指", comment: "")
         }
         else
         {
@@ -229,7 +229,7 @@ private extension EditCheatViewController
         var title = sender.text ?? ""
         if title.count == 0
         {
-            title = NSLocalizedString("Cheat", comment: "")
+            title = NSLocalizedString("金手指", comment: "")
         }
         
         self.title = title
@@ -286,25 +286,25 @@ private extension EditCheatViewController
             }
             catch CheatValidator.Error.invalidCode
             {
-                self.presentErrorAlert(title: NSLocalizedString("Invalid Code", comment: ""), message: NSLocalizedString("Please make sure you typed the cheat code in correctly and try again.", comment: "")) {
+                self.presentErrorAlert(title: NSLocalizedString("无效代码", comment: ""), message: NSLocalizedString("请确保您正确输入了作弊码，然后重试。", comment: "")) {
                     self.codeTextView.becomeFirstResponder()
                 }
             }
             catch CheatValidator.Error.invalidName
             {
-                self.presentErrorAlert(title: NSLocalizedString("Invalid Name", comment: ""), message: NSLocalizedString("Please rename this cheat and try again.", comment: "")) {
+                self.presentErrorAlert(title: NSLocalizedString("无效名称", comment: ""), message: NSLocalizedString("请重命名此作弊码再重试。", comment: "")) {
                     self.codeTextView.becomeFirstResponder()
                 }
             }
             catch CheatValidator.Error.duplicateCode
             {
-                self.presentErrorAlert(title: NSLocalizedString("Duplicate Code", comment: ""), message: NSLocalizedString("A cheat already exists with this code. Please type in a different code and try again.", comment: "")) {
+                self.presentErrorAlert(title: NSLocalizedString("重复代码", comment: ""), message: NSLocalizedString("此代码已存在，请输入其他代码再重试。", comment: "")) {
                     self.codeTextView.becomeFirstResponder()
                 }
             }
             catch CheatValidator.Error.duplicateName
             {
-                self.presentErrorAlert(title: NSLocalizedString("Duplicate Name", comment: ""), message: NSLocalizedString("A cheat already exists with this name. Please rename this cheat and try again.", comment: "")) {
+                self.presentErrorAlert(title: NSLocalizedString("重复名称", comment: ""), message: NSLocalizedString("已存在同名代码，请重命名再重试。", comment: "")) {
                     self.nameTextField.becomeFirstResponder()
                 }
             }
@@ -312,7 +312,7 @@ private extension EditCheatViewController
             {
                 print(error)
                 
-                self.presentErrorAlert(title: NSLocalizedString("Unknown Error", comment: ""), message: NSLocalizedString("An error occured. Please make sure you typed the cheat code in correctly and try again.", comment: "")) {
+                self.presentErrorAlert(title: NSLocalizedString("未知错误", comment: ""), message: NSLocalizedString("发生错误，请确保您正确输入了作弊码再重试。", comment: "")) {
                     self.codeTextView.becomeFirstResponder()
                 }
             }
@@ -360,10 +360,10 @@ extension EditCheatViewController
             
             switch (containsSpaces, containsDashes)
             {
-            case (true, false): return NSLocalizedString("Spaces will be inserted automatically as you type.", comment: "")
-            case (false, true): return NSLocalizedString("Dashes will be inserted automatically as you type.", comment: "")
-            case (true, true): return NSLocalizedString("Spaces and dashes will be inserted automatically as you type.", comment: "")
-            case (false, false): return NSLocalizedString("Code will be formatted automatically as you type.", comment: "")
+            case (true, false): return NSLocalizedString("输入时将自动插入空格。", comment: "")
+            case (false, true): return NSLocalizedString("输入时将自动插入破折号。", comment: "")
+            case (true, true): return NSLocalizedString("输入时将自动插入空格和破折号。", comment: "")
+            case (false, false): return NSLocalizedString("输入时自动格式化。", comment: "")
             }
         }
     }

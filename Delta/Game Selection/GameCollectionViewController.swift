@@ -311,9 +311,9 @@ private extension GameCollectionViewController
             }
             catch LaunchError.alreadyRunning
             {
-                let alertController = UIAlertController(title: NSLocalizedString("Game Paused", comment: ""), message: NSLocalizedString("Would you like to resume where you left off, or restart the game?", comment: ""), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Resume", comment: ""), style: .default, handler: { (action) in
+                let alertController = UIAlertController(title: "游戏暂停", message: "您想从上次中断的地方继续，还是重新开始游戏？", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+                alertController.addAction(UIAlertAction(title: "恢复", style: .default, handler: { (action) in
                     
                     let fetchRequest = SaveState.rst_fetchRequest() as! NSFetchRequest<SaveState>
                     fetchRequest.predicate = NSPredicate(format: "%K == %@ AND %K == %d", #keyPath(SaveState.game), game, #keyPath(SaveState.type), SaveStateType.auto.rawValue)
@@ -337,21 +337,21 @@ private extension GameCollectionViewController
                     // The game hasn't changed, so the activeEmulatorCore is the same as before, so we need to enable videoManager it again
                     self.activeEmulatorCore?.videoManager.isEnabled = true
                 }))
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Restart", comment: ""), style: .destructive, handler: { (action) in
+                alertController.addAction(UIAlertAction(title: "重新开始", style: .destructive, handler: { (action) in
                     launchGame(ignoringErrors: [LaunchError.alreadyRunning])
                 }))
                 self.present(alertController, animated: true)
             }
             catch LaunchError.downloadingGameSave
             {
-                let alertController = UIAlertController(title: NSLocalizedString("Downloading Save File", comment: ""), message: NSLocalizedString("Please wait until after this game's save file has been downloaded before playing to prevent losing save data.", comment: ""), preferredStyle: .alert)
+                let alertController = UIAlertController(title: "下载保存文件", message: "请等到下载此游戏的保存文件后再玩，以防止丢失保存数据。", preferredStyle: .alert)
                 alertController.addAction(.ok)
                 self.present(alertController, animated: true, completion: nil)
             }
             catch LaunchError.biosNotFound
             {
-                let alertController = UIAlertController(title: NSLocalizedString("Missing Required DS Files", comment: ""), message: NSLocalizedString("Delta requires certain files to play Nintendo DS games. Please import them to launch this game.", comment: ""), preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Import Files", comment: ""), style: .default) { _ in
+                let alertController = UIAlertController(title:"缺少所需的 DS 文件", message: "请导入它们来启动此游戏。", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "导入文件", style: .default) { _ in
                     self.performSegue(withIdentifier: "showDSSettings", sender: nil)
                 })
                 alertController.addAction(.cancel)
@@ -360,7 +360,7 @@ private extension GameCollectionViewController
             }
             catch
             {
-                let alertController = UIAlertController(title: NSLocalizedString("Unable to Launch Game", comment: ""), error: error)
+                let alertController = UIAlertController(title: "无法启动游戏", error: error)
                 self.present(alertController, animated: true, completion: nil)
             }
         }
@@ -437,37 +437,37 @@ private extension GameCollectionViewController
 {
     func actions(for game: Game) -> [Action]
     {
-        let cancelAction = Action(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, action: nil)
+        let cancelAction = Action(title: NSLocalizedString("取消", comment: ""), style: .cancel, action: nil)
         
-        let renameAction = Action(title: NSLocalizedString("Rename", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "pencil.and.ellipsis.rectangle"), action: { [unowned self] action in
+        let renameAction = Action(title: NSLocalizedString("重命名", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "pencil.and.ellipsis.rectangle"), action: { [unowned self] action in
             self.rename(game)
         })
         
-        let changeArtworkAction = Action(title: NSLocalizedString("Change Artwork", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "photo")) { [unowned self] action in
+        let changeArtworkAction = Action(title: NSLocalizedString("修改封面", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "photo")) { [unowned self] action in
             self.changeArtwork(for: game)
         }
         
-        let changeControllerSkinAction = Action(title: NSLocalizedString("Change Controller Skin", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "gamecontroller")) { [unowned self] _ in
+        let changeControllerSkinAction = Action(title: NSLocalizedString("修改控制器皮肤", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "gamecontroller")) { [unowned self] _ in
             self.changePreferredControllerSkin(for: game)
         }
         
-        let shareAction = Action(title: NSLocalizedString("Share", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "square.and.arrow.up"), action: { [unowned self] action in
+        let shareAction = Action(title: NSLocalizedString("分享", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "square.and.arrow.up"), action: { [unowned self] action in
             self.share(game)
         })
         
-        let saveStatesAction = Action(title: NSLocalizedString("Save States", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "doc.on.doc"), action: { [unowned self] action in
+        let saveStatesAction = Action(title: NSLocalizedString("存档", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "doc.on.doc"), action: { [unowned self] action in
             self.viewSaveStates(for: game)
         })
         
-        let importSaveFile = Action(title: NSLocalizedString("Import Save File", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "tray.and.arrow.down")) { [unowned self] _ in
+        let importSaveFile = Action(title: NSLocalizedString("导入保存文件", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "tray.and.arrow.down")) { [unowned self] _ in
             self.importSaveFile(for: game)
         }
         
-        let exportSaveFile = Action(title: NSLocalizedString("Export Save File", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "tray.and.arrow.up")) { [unowned self] _ in
+        let exportSaveFile = Action(title: NSLocalizedString("导出保存文件", comment: ""), style: .default, image: UIImage(symbolNameIfAvailable: "tray.and.arrow.up")) { [unowned self] _ in
             self.exportSaveFile(for: game)
         }
         
-        let deleteAction = Action(title: NSLocalizedString("Delete", comment: ""), style: .destructive, image: UIImage(symbolNameIfAvailable: "trash"), action: { [unowned self] action in
+        let deleteAction = Action(title: NSLocalizedString("删除", comment: ""), style: .destructive, image: UIImage(symbolNameIfAvailable: "trash"), action: { [unowned self] action in
             self.delete(game)
         })
         
@@ -484,8 +484,8 @@ private extension GameCollectionViewController
     
     func delete(_ game: Game)
     {
-        let confirmationAlertController = UIAlertController(title: NSLocalizedString("Are you sure you want to delete this game? All associated data, such as saves, save states, and cheat codes, will also be deleted.", comment: ""), message: nil, preferredStyle: .actionSheet)
-        confirmationAlertController.addAction(UIAlertAction(title: NSLocalizedString("Delete Game", comment: ""), style: .destructive, handler: { action in
+        let confirmationAlertController = UIAlertController(title: NSLocalizedString("你确定要删除这个游戏吗？所有相关数据（如保存、保存状态和作弊代码）也将被删除。", comment: ""), message: nil, preferredStyle: .actionSheet)
+        confirmationAlertController.addAction(UIAlertAction(title: NSLocalizedString("删除游戏", comment: ""), style: .destructive, handler: { action in
             
             DatabaseManager.shared.performBackgroundTask { (context) in
                 let temporaryGame = context.object(with: game.objectID) as! Game
@@ -495,7 +495,7 @@ private extension GameCollectionViewController
             }
             
         }))
-        confirmationAlertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        confirmationAlertController.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: nil))
         
         self.present(confirmationAlertController, animated: true, completion: nil)
     }
@@ -507,20 +507,20 @@ private extension GameCollectionViewController
     
     func rename(_ game: Game)
     {
-        let alertController = UIAlertController(title: NSLocalizedString("Rename Game", comment: ""), message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("重命名游戏", comment: ""), message: nil, preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.text = game.name
-            textField.placeholder = NSLocalizedString("Name", comment: "")
+            textField.placeholder = NSLocalizedString("名字", comment: "")
             textField.autocapitalizationType = .words
             textField.returnKeyType = .done
             textField.enablesReturnKeyAutomatically = true
             textField.addTarget(self, action: #selector(GameCollectionViewController.textFieldTextDidChange(_:)), for: .editingChanged)
         }
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel, handler: { (action) in
             self._renameAction = nil
         }))
         
-        let renameAction = UIAlertAction(title: NSLocalizedString("Rename", comment: ""), style: .default, handler: { [unowned alertController] (action) in
+        let renameAction = UIAlertAction(title: NSLocalizedString("重命名", comment: ""), style: .default, handler: { [unowned alertController] (action) in
             self.rename(game, with: alertController.textFields?.first?.text ?? "")
         })
         alertController.addAction(renameAction)
@@ -642,7 +642,7 @@ private extension GameCollectionViewController
                 func presentAlertController()
                 {
                     
-                    let alertController = UIAlertController(title: NSLocalizedString("Unable to Change Artwork", comment: ""), message: NSLocalizedString("The image might be corrupted or in an unsupported format.", comment: ""), preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("无法修改封面", comment: ""), message: NSLocalizedString("图像可能会损坏或格式不支持。", comment: ""), preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: RSTSystemLocalizedString("OK"), style: .cancel, handler: nil))
                     self.present(alertController, animated: true, completion: nil)
                 }
@@ -727,7 +727,7 @@ private extension GameCollectionViewController
             }
             catch
             {
-                let alertController = UIAlertController(title: NSLocalizedString("Failed to Import Save File", comment: ""), error: error)
+                let alertController = UIAlertController(title: NSLocalizedString("导入保存文件失败", comment: ""), error: error)
                 
                 if let presentedViewController = self.presentedViewController
                 {
@@ -761,7 +761,7 @@ private extension GameCollectionViewController
         }
         catch
         {
-            let alertController = UIAlertController(title: NSLocalizedString("Failed to Export Save File", comment: ""), error: error)
+            let alertController = UIAlertController(title: NSLocalizedString("导出保存文件失败", comment: ""), error: error)
             self.present(alertController, animated: true, completion: nil)
         }
     }

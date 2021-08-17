@@ -163,22 +163,22 @@ private extension PauseViewController
         
         guard self.emulatorCore != nil else { return }
         
-        self.saveStateItem = MenuItem(text: NSLocalizedString("Save State", comment: ""), image: #imageLiteral(resourceName: "SaveSaveState"), action: { [unowned self] _ in
+        self.saveStateItem = MenuItem(text: NSLocalizedString("存档", comment: ""), image: #imageLiteral(resourceName: "SaveSaveState"), action: { [unowned self] _ in
             self.saveStatesViewControllerMode = .saving
             self.performSegue(withIdentifier: "saveStates", sender: self)
         })
         
-        self.loadStateItem = MenuItem(text: NSLocalizedString("Load State", comment: ""), image: #imageLiteral(resourceName: "LoadSaveState"), action: { [unowned self] _ in
+        self.loadStateItem = MenuItem(text: NSLocalizedString("加载存档", comment: ""), image: #imageLiteral(resourceName: "LoadSaveState"), action: { [unowned self] _ in
             self.saveStatesViewControllerMode = .loading
             self.performSegue(withIdentifier: "saveStates", sender: self)
         })
         
-        self.cheatCodesItem = MenuItem(text: NSLocalizedString("Cheat Codes", comment: ""), image: #imageLiteral(resourceName: "CheatCodes"), action: { [unowned self] _ in
+        self.cheatCodesItem = MenuItem(text: NSLocalizedString("金手指", comment: ""), image: #imageLiteral(resourceName: "CheatCodes"), action: { [unowned self] _ in
             self.performSegue(withIdentifier: "cheats", sender: self)
         })
         
-        self.fastForwardItem = MenuItem(text: NSLocalizedString("Fast Forward", comment: ""), image: #imageLiteral(resourceName: "FastForward"), action: { _ in })
-        self.sustainButtonsItem = MenuItem(text: NSLocalizedString("Hold Buttons", comment: ""), image: #imageLiteral(resourceName: "SustainButtons"), action: { _ in })
+        self.fastForwardItem = MenuItem(text: NSLocalizedString("快进", comment: ""), image: #imageLiteral(resourceName: "FastForward"), action: { _ in })
+        self.sustainButtonsItem = MenuItem(text: NSLocalizedString("按住按钮", comment: ""), image: #imageLiteral(resourceName: "SustainButtons"), action: { _ in })
     }
     
     func updateSafeAreaInsets()

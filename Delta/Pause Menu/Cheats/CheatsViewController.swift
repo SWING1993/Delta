@@ -38,16 +38,16 @@ extension CheatsViewController
     {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("Cheats", comment: "")
+        self.title = NSLocalizedString("金手指", comment: "")
         
         let vibrancyEffect = UIVibrancyEffect(blurEffect: UIBlurEffect(style: .dark))
         let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
         
         let placeholderView = RSTPlaceholderView(frame: CGRect(x: 0, y: 0, width: vibrancyView.bounds.width, height: vibrancyView.bounds.height))
         placeholderView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        placeholderView.textLabel.text = NSLocalizedString("No Cheats", comment: "")
+        placeholderView.textLabel.text = NSLocalizedString("暂无金手指", comment: "")
         placeholderView.textLabel.textColor = UIColor.white
-        placeholderView.detailTextLabel.text = NSLocalizedString("You can add a new cheat by pressing the + button in the top right.", comment: "")
+        placeholderView.detailTextLabel.text = NSLocalizedString("您可以按右上角的 + 按钮添加新的金手指。", comment: "")
         placeholderView.detailTextLabel.textColor = UIColor.white
         vibrancyView.contentView.addSubview(placeholderView)
         
@@ -169,11 +169,11 @@ extension CheatsViewController
     {
         let cheat = self.dataSource.item(at: indexPath)
         
-        let deleteAction = UITableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment: "")) { (action, indexPath) in
+        let deleteAction = UITableViewRowAction(style: .destructive, title: NSLocalizedString("删除", comment: "")) { (action, indexPath) in
             self.deleteCheat(cheat)
         }
         
-        let editAction = UITableViewRowAction(style: .normal, title: NSLocalizedString("Edit", comment: "")) { (action, indexPath) in
+        let editAction = UITableViewRowAction(style: .normal, title: NSLocalizedString("编辑", comment: "")) { (action, indexPath) in
             let editCheatViewController = self.makeEditCheatViewController(cheat: cheat)
             editCheatViewController.presentWithPresentingViewController(self)
         }

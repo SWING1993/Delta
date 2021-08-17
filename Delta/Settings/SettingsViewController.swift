@@ -86,17 +86,17 @@ class SettingsViewController: UITableViewController
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
         {
             #if LITE
-            self.versionLabel.text = NSLocalizedString(String(format: "Delta Lite %@", version), comment: "Delta Version")
+            self.versionLabel.text = NSLocalizedString(String(format: "Delta Lite(v%@) —— 哆啦科技工作室", version), comment: "Delta Version")
             #else
-            self.versionLabel.text = NSLocalizedString(String(format: "Delta %@", version), comment: "Delta Version")
+            self.versionLabel.text = NSLocalizedString(String(format: "Delta(v%@) —— 哆啦科技工作室", version), comment: "Delta Version")
             #endif
         }
         else
         {
             #if LITE
-            self.versionLabel.text = NSLocalizedString("Delta Lite", comment: "")
+            self.versionLabel.text = NSLocalizedString("Delta Lite(v%@) —— 哆啦科技工作室", comment: "")
             #else
-            self.versionLabel.text = NSLocalizedString("Delta", comment: "")
+            self.versionLabel.text = NSLocalizedString("Delta(v%@) —— 哆啦科技工作室", comment: "")
             #endif
         }
     }

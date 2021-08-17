@@ -90,8 +90,8 @@ extension GamesViewController
         
         self.placeholderView = RSTPlaceholderView(frame: self.view.bounds)
         self.placeholderView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.placeholderView.textLabel.text = NSLocalizedString("No Games", comment: "")
-        self.placeholderView.detailTextLabel.text = NSLocalizedString("You can import games by pressing the + button in the top right.", comment: "")
+        self.placeholderView.textLabel.text = "暂无游戏"
+        self.placeholderView.detailTextLabel.text = "您可以通过按右上角的 + 按钮导入游戏。"
         self.view.insertSubview(self.placeholderView, at: 0)
         
         self.pageControl = UIPageControl()
@@ -197,8 +197,8 @@ private extension GamesViewController
         searchResultsController.activeEmulatorCore = self.activeEmulatorCore
         
         let placeholderView = RSTPlaceholderView()
-        placeholderView.textLabel.text = NSLocalizedString("No Games Found", comment: "")
-        placeholderView.detailTextLabel.text = NSLocalizedString("Please make sure the name is correct, or try searching for another game.", comment: "")
+        placeholderView.textLabel.text = "没有找到游戏"
+        placeholderView.detailTextLabel.text = "请确保名称正确，或尝试搜索其他游戏。"
         
         switch self.theme
         {
@@ -340,7 +340,7 @@ private extension GamesViewController
         }
         else
         {
-            self.title = NSLocalizedString("Games", comment: "")
+            self.title = "游戏"
             
             self.pageViewController.view.setHidden(true, animated: animated)
             self.placeholderView.setHidden(false, animated: animated)
@@ -429,7 +429,7 @@ private extension GamesViewController
     {
         guard let coordinator = SyncManager.shared.coordinator, let syncProgress = SyncManager.shared.syncProgress, coordinator.isSyncing && self.syncingToastView == nil else { return }
 
-        let toastView = RSTToastView(text: NSLocalizedString("Syncing...", comment: ""), detailText: syncProgress.localizedAdditionalDescription)
+        let toastView = RSTToastView(text: "同步中...", detailText: syncProgress.localizedAdditionalDescription)
         toastView.activityIndicatorView.startAnimating()
         toastView.addTarget(self, action: #selector(GamesViewController.hideSyncingToastView), for: .touchUpInside)
         toastView.show(in: self.view)
@@ -451,8 +451,8 @@ private extension GamesViewController
         
         switch result
         {
-        case .success: toastView = RSTToastView(text: NSLocalizedString("Sync Complete", comment: ""), detailText: nil)
-        case .failure(let error): toastView = RSTToastView(text: NSLocalizedString("Sync Failed", comment: ""), detailText: error.failureReason)
+        case .success: toastView = RSTToastView(text: "同步完成", detailText: nil)
+        case .failure(let error): toastView = RSTToastView(text: "同步失败", detailText: error.failureReason)
         }
         
         toastView.textLabel.textAlignment = .center

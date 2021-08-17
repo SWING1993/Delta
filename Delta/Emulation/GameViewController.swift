@@ -302,11 +302,11 @@ extension GameViewController
         
         self.sustainButtonsBackgroundView = RSTPlaceholderView(frame: CGRect(x: 0, y: 0, width: vibrancyView.contentView.bounds.width, height: vibrancyView.contentView.bounds.height))
         self.sustainButtonsBackgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.sustainButtonsBackgroundView.textLabel.text = NSLocalizedString("Select Buttons to Hold Down", comment: "")
+        self.sustainButtonsBackgroundView.textLabel.text = NSLocalizedString("选择要按住的按钮", comment: "")
         self.sustainButtonsBackgroundView.textLabel.numberOfLines = 1
         self.sustainButtonsBackgroundView.textLabel.minimumScaleFactor = 0.5
         self.sustainButtonsBackgroundView.textLabel.adjustsFontSizeToFitWidth = true
-        self.sustainButtonsBackgroundView.detailTextLabel.text = NSLocalizedString("Press the Menu button when finished.", comment: "")
+        self.sustainButtonsBackgroundView.detailTextLabel.text = NSLocalizedString("完成后按菜单按钮。", comment: "")
         self.sustainButtonsBackgroundView.alpha = 0.0
         vibrancyView.contentView.addSubview(self.sustainButtonsBackgroundView)
         
@@ -325,7 +325,7 @@ extension GameViewController
         
         if self.emulatorCore?.deltaCore == DS.core, UserDefaults.standard.desmumeDeprecatedAlertCount < 3
         {
-            let toastView = RSTToastView(text: NSLocalizedString("DeSmuME Core Deprecated", comment: ""), detailText: NSLocalizedString("Switch to the melonDS core in Settings for latest improvements.", comment: ""))
+            let toastView = RSTToastView(text: NSLocalizedString("DeSmuME Core 已弃用", comment: ""), detailText: NSLocalizedString("切换到设置中的 melonDS 核心以获得最新改进。", comment: ""))
             self.show(toastView, duration: 5.0)
             
             UserDefaults.standard.desmumeDeprecatedAlertCount += 1
@@ -1184,7 +1184,7 @@ private extension GameViewController
         
         func presentToastView()
         {
-            let toastView = RSTToastView(text: NSLocalizedString("Autorotation Disabled", comment: ""), detailText: NSLocalizedString("Pause game to change orientation.", comment: ""))
+            let toastView = RSTToastView(text: NSLocalizedString("自转禁用", comment: ""), detailText: NSLocalizedString("暂停游戏以改变方向。", comment: ""))
             self.show(toastView)
         }
         
