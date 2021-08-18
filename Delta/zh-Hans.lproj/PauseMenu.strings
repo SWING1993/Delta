@@ -1,0 +1,48 @@
+
+/* Class = "UIBarButtonItem"; title = "Main Menu"; ObjectID = "2yt-vB-uMF"; */
+"主菜单" = "Main Menu";
+
+/* Class = "UINavigationItem"; title = "Save State"; ObjectID = "BoG-k2-aR2"; */
+"保存状态" = "Save State";
+
+/* Class = "UITextField"; placeholder = "Cheat Name"; ObjectID = "DD1-X0-hg7"; */
+"金手指名称" = "Cheat Name";
+
+/* Class = "UINavigationItem"; title = "Cheats"; ObjectID = "Gsv-JZ-Yc0"; */
+"金手指" = "Cheats";
+
+/* Class = "UITableViewSection"; headerTitle = "Name"; ObjectID = "QT6-DZ-g70"; */
+"名称" = "Name";
+
+/* Class = "UIBarButtonItem"; title = "Resume"; ObjectID = "Wfq-I3-437"; */
+"恢复" = "Resume";
+
+/* Class = "UITextView"; text = "XXXXXXXX YYYYYYYY"; ObjectID = "a17-LB-QXD"; */
+"XXXXXXXX YYYYYYYY" = "XXXXXXXX YYYYYYYY";
+
+/* Class = "UITableViewSection"; footerTitle = "Description"; ObjectID = "rHC-nA-ga0"; */
+"描述" = "Description";
+
+/* Class = "UITableViewSection"; headerTitle = "Code"; ObjectID = "rHC-nA-ga0"; */
+"代码" = "Code";
+
+/* Class = "UINavigationItem"; title = "Paused"; ObjectID = "rY7-Wx-NaD"; */
+"暂停" = "Paused";
+
+/* Class = "UITableViewSection"; footerTitle = "Description"; ObjectID = "rvn-VK-2uH"; */
+"描述" = "Description";
+
+/* Class = "UITableViewSection"; headerTitle = "Type"; ObjectID = "rvn-VK-2uH"; */
+"类型" = "Type";
+
+/* Class = "UISegmentedControl"; xrD-ue-96Q.segmentTitles[0] = "First"; ObjectID = "xrD-ue-96Q"; */
+"第一" = "First";
+
+/* Class = "UISegmentedControl"; xrD-ue-96Q.segmentTitles[1] = "Second"; ObjectID = "xrD-ue-96Q"; */
+"第二" = "Second";
+
+/* Class = "UIButton"; normalTitle = "▼"; ObjectID = "y2a-9f-EFz"; */
+"▼" = "▼";
+
+/* Class = "UINavigationItem"; title = "Cheat"; ObjectID = "zdc-ES-dan"; */
+"金手指" = "Cheat";
