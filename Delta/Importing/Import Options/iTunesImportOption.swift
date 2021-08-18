@@ -24,9 +24,9 @@ struct iTunesImportOption: ImportOption
     
     func `import`(withCompletionHandler completionHandler: @escaping (Set<URL>?) -> Void)
     {
-        let alertController = UIAlertController(title: NSLocalizedString("Import from iTunes?", comment: ""), message: NSLocalizedString("Delta will import the games and controller skins copied over via iTunes.", comment: ""), preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("从 iTunes 导入？", comment: ""), message: NSLocalizedString("Delta 将导入通过 iTunes 复制的游戏和控制器皮肤。", comment: ""), preferredStyle: .alert)
         
-        let importAction = UIAlertAction(title: NSLocalizedString("Import", comment: ""), style: .default) { action in
+        let importAction = UIAlertAction(title: NSLocalizedString("导入", comment: ""), style: .default) { action in
             
             var importedURLs = Set<URL>()
             
@@ -68,7 +68,7 @@ struct iTunesImportOption: ImportOption
         }
         alertController.addAction(importAction)
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { action in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("取消", comment: ""), style: .cancel) { action in
             completionHandler(nil)
         }
         alertController.addAction(cancelAction)

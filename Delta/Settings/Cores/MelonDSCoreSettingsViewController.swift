@@ -48,13 +48,13 @@ private extension MelonDSCoreSettingsViewController
             switch self
             {
             case .unknownSize(let fileURL):
-                return String(format: NSLocalizedString("%@’s size could not be determined.", comment: ""), fileURL.lastPathComponent)
+                return String(format: NSLocalizedString("无法确定%@的大小", comment: ""), fileURL.lastPathComponent)
                 
             case .incorrectHash(let fileURL, let md5Hash, let expectedHash):
-                return String(format: NSLocalizedString("%@‘s checksum does not match the expected checksum.\n\nChecksum:\n%@\n\nExpected:\n%@", comment: ""), fileURL.lastPathComponent, md5Hash, expectedHash)
+                return String(format: NSLocalizedString("%@的校验与预期的校验不匹配。\n\n校验：\n%@\n\n预期：\n%@", comment: ""), fileURL.lastPathComponent, md5Hash, expectedHash)
                 
             case .unsupportedHash(let fileURL, let md5Hash):
-                return String(format: NSLocalizedString("%@ is not compatible with this version of Delta.\n\nChecksum:\n%@", comment: ""), fileURL.lastPathComponent, md5Hash)
+                return String(format: NSLocalizedString("%@与此版本的 Delta 不兼容。\n\n校验：\n%@", comment: ""), fileURL.lastPathComponent, md5Hash)
                 
             case .incorrectSize(let fileURL, let size, let validSizes):
                 let actualSize = BIOSError.byteFormatter.string(fromByteCount: Int64(size))
@@ -95,7 +95,7 @@ private extension MelonDSCoreSettingsViewController
         }
         
         var recoverySuggestion: String? {
-            return NSLocalizedString("Please choose a different BIOS file.", comment: "")
+            return NSLocalizedString("请选择不同的BIOS文件。", comment: "")
         }
     }
 }
@@ -221,7 +221,7 @@ private extension MelonDSCoreSettingsViewController
     
     func changeCore()
     {
-        let alertController = UIAlertController(title: NSLocalizedString("Change Emulator Core", comment: ""), message: NSLocalizedString("Save states are not compatible between different emulator cores. Make sure to use in-game saves in order to keep using your save data.\n\nYour existing save states will not be deleted and will be available whenever you switch cores again.", comment: ""), preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: NSLocalizedString("Change Emulator Core", comment: ""), message: NSLocalizedString("不同内核之间的存档不兼容。请务必使用游戏内存档，以便继续使用您的存档数据。\n\n您现有的存档状态不会被删除，并且在您再次切换内核时可用。", comment: ""), preferredStyle: .actionSheet)
         
         var desmumeActionTitle = DS.core.metadata?.name.value ?? DS.core.name
         var melonDSActionTitle = MelonDS.core.metadata?.name.value ?? MelonDS.core.name
@@ -506,7 +506,7 @@ extension MelonDSCoreSettingsViewController: UIDocumentPickerDelegate
         }
         catch let error as NSError
         {
-            let title = String(format: NSLocalizedString("Could not import %@.", comment: ""), bios.filename)
+            let title = String(format: NSLocalizedString("无法导入%@.", comment: ""), bios.filename)
 
             var message = error.localizedDescription
             if let recoverySuggestion = error.localizedRecoverySuggestion

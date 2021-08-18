@@ -34,9 +34,9 @@ extension DatabaseManager
         var errorDescription: String? {
             switch self
             {
-            case .doesNotExist: return NSLocalizedString("The file does not exist.", comment: "")
-            case .invalid: return NSLocalizedString("The file is invalid.", comment: "")
-            case .unsupported: return NSLocalizedString("This file is not supported.", comment: "")
+            case .doesNotExist: return NSLocalizedString("该文件不存在。", comment: "")
+            case .invalid: return NSLocalizedString("该文件无效。", comment: "")
+            case .unsupported: return NSLocalizedString("不支持此文件。", comment: "")
             case .unknown(_, let error): return error.localizedDescription
             case .saveFailed(_, let error): return error.localizedDescription
             }
@@ -178,8 +178,8 @@ extension DatabaseManager
             }
             
             let insertedGames = [
-                (name: NSLocalizedString("Home Screen", comment: ""), identifier: Game.melonDSBIOSIdentifier),
-                (name: NSLocalizedString("Home Screen (DSi)", comment: ""), identifier: Game.melonDSDSiBIOSIdentifier)
+                (name: NSLocalizedString("主屏幕", comment: ""), identifier: Game.melonDSBIOSIdentifier),
+                (name: NSLocalizedString("主屏幕 (DSi)", comment: ""), identifier: Game.melonDSDSiBIOSIdentifier)
             ].compactMap(makeBIOS)
             
             // Break if we didn't create any new Games.

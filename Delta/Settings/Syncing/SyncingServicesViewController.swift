@@ -56,9 +56,9 @@ private extension SyncingServicesViewController
         {
             if SyncManager.shared.coordinator?.account != nil
             {
-                let alertController = UIAlertController(title: NSLocalizedString("Disable Syncing?", comment: ""), message: NSLocalizedString("Enabling syncing again later may result in conflicts that must be resolved manually.", comment: ""), preferredStyle: .alert)
+                let alertController = UIAlertController(title: NSLocalizedString("禁用同步？", comment: ""), message: NSLocalizedString("稍后再次启用同步可能会导致必须手动解决的冲突。", comment: ""), preferredStyle: .alert)
                 alertController.addAction(.cancel)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Disable", comment: ""), style: .default) { (action) in
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("禁用", comment: ""), style: .default) { (action) in
                     self.changeService(to: nil)
                 })
                 self.present(alertController, animated: true, completion: nil)
@@ -95,7 +95,7 @@ private extension SyncingServicesViewController
                 }
                 catch
                 {
-                    let alertController = UIAlertController(title: NSLocalizedString("Unable to Change Syncing Service", comment: ""), error: error)
+                    let alertController = UIAlertController(title: NSLocalizedString("无法更改同步服务", comment: ""), error: error)
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
@@ -126,7 +126,7 @@ extension SyncingServicesViewController
         switch Section.allCases[indexPath.section]
         {
         case .syncing:
-            cell.textLabel?.text = NSLocalizedString("Syncing", comment: "")
+            cell.textLabel?.text = NSLocalizedString("同步中", comment: "")
             
         case .service:
             let service = SyncManager.Service.allCases[indexPath.row]
@@ -146,12 +146,12 @@ extension SyncingServicesViewController
             if SyncManager.shared.coordinator?.account != nil
             {
                 cell.textLabel?.textColor = .red
-                cell.textLabel?.text = NSLocalizedString("Sign Out", comment: "")
+                cell.textLabel?.text = NSLocalizedString("退出登录", comment: "")
             }
             else
             {
                 cell.textLabel?.textColor = .deltaPurple
-                cell.textLabel?.text = NSLocalizedString("Sign In", comment: "")
+                cell.textLabel?.text = NSLocalizedString("登录", comment: "")
             }
         }
         
@@ -170,9 +170,9 @@ extension SyncingServicesViewController
             
             if SyncManager.shared.coordinator?.account != nil
             {
-                let alertController = UIAlertController(title: NSLocalizedString("Are you sure you want to change sync services?", comment: ""), message: NSLocalizedString("Switching back later may result in conflicts that must be resolved manually.", comment: ""), preferredStyle: .actionSheet)
+                let alertController = UIAlertController(title: NSLocalizedString("您确定要更改同步服务吗？", comment: ""), message: NSLocalizedString("稍后切换回来可能会导致必须手动解决的冲突。", comment: ""), preferredStyle: .actionSheet)
                 alertController.addAction(.cancel)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Change Sync Service", comment: ""), style: .destructive, handler: { (action) in
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("更改同步服务", comment: ""), style: .destructive, handler: { (action) in
                     self.changeService(to: syncingService)
                 }))
                 
@@ -188,9 +188,9 @@ extension SyncingServicesViewController
         case .authenticate:            
             if SyncManager.shared.coordinator?.account != nil
             {
-                let alertController = UIAlertController(title: NSLocalizedString("Are you sure you want to sign out?", comment: ""), message: NSLocalizedString("Signing in again later may result in conflicts that must be resolved manually.", comment: ""), preferredStyle: .actionSheet)
+                let alertController = UIAlertController(title: NSLocalizedString("您确定要退出吗？", comment: ""), message: NSLocalizedString("稍后再次登录可能会导致必须手动解决的冲突。", comment: ""), preferredStyle: .actionSheet)
                 alertController.addAction(.cancel)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Sign Out", comment: ""), style: .destructive) { (action) in
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("登出", comment: ""), style: .destructive) { (action) in
                     SyncManager.shared.deauthenticate { (result) in
                         DispatchQueue.main.async {
                             do
@@ -202,7 +202,7 @@ extension SyncingServicesViewController
                             }
                             catch
                             {
-                                let alertController = UIAlertController(title: NSLocalizedString("Failed to Sign Out", comment: ""), error: error)
+                                let alertController = UIAlertController(title: NSLocalizedString("登出失败", comment: ""), error: error)
                                 self.present(alertController, animated: true, completion: nil)
                             }
                         }
@@ -228,7 +228,7 @@ extension SyncingServicesViewController
                         }
                         catch
                         {
-                            let alertController = UIAlertController(title: NSLocalizedString("Failed to Sign In", comment: ""), error: error)
+                            let alertController = UIAlertController(title: NSLocalizedString("登录失败", comment: ""), error: error)
                             self.present(alertController, animated: true, completion: nil)
                         }
                     }

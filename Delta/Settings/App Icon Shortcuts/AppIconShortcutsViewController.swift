@@ -115,14 +115,14 @@ private extension AppIconShortcutsViewController
         self.dataSource.rowAnimation = .fade
         
         let placeholderView = RSTPlaceholderView()
-        placeholderView.textLabel.text = NSLocalizedString("No Home Screen Shortcuts", comment: "")
-        placeholderView.detailTextLabel.text = NSLocalizedString("You can customize the shortcuts that appear when long-pressing the app icon once you've added some games.", comment: "")
+        placeholderView.textLabel.text = NSLocalizedString("没有主屏幕快捷方式", comment: "")
+        placeholderView.detailTextLabel.text = NSLocalizedString("添加一些游戏后，您可以自定义长按应用程序图标时出现的快捷方式。", comment: "")
         self.dataSource.placeholderView = placeholderView
     }
     
     func configureModeCell(_ cell: SwitchTableViewCell, for indexPath: IndexPath)
     {
-        cell.textLabel?.text = NSLocalizedString("Recently Played Games", comment: "")
+        cell.textLabel?.text = NSLocalizedString("最近玩过的游戏", comment: "")
         cell.textLabel?.backgroundColor = .clear
         
         cell.switchView.isOn = (Settings.gameShortcutsMode == .recent)
@@ -250,7 +250,7 @@ extension AppIconShortcutsViewController
         switch section
         {
         case 0: return nil
-        case 1: return NSLocalizedString("Shortcuts", comment: "")
+        case 1: return NSLocalizedString("快捷方式", comment: "")
         default:
             let gameType = GameType(rawValue: self.gamesDataSource.fetchedResultsController.sections![section - 2].name)
             
@@ -265,11 +265,11 @@ extension AppIconShortcutsViewController
         
         switch (section, Settings.gameShortcutsMode)
         {
-        case (0, .recent): return NSLocalizedString("Your most recently played games will appear as shortcuts when long-pressing the app icon.", comment: "")
-        case (0, .manual): return NSLocalizedString("The games you've selected below will appear as shortcuts when long-pressing the app icon.", comment: "")
-        case (1, .recent) where self.shortcutsDataSource.itemCount == 0: return NSLocalizedString("You have no recently played games.", comment: "")
+        case (0, .recent): return NSLocalizedString("长按应用程序图标时，您最近玩过的游戏将显示为快捷方式。", comment: "")
+        case (0, .manual): return NSLocalizedString("长按应用程序图标时，您在下方选择的游戏将显示为快捷方式。", comment: "")
+        case (1, .recent) where self.shortcutsDataSource.itemCount == 0: return NSLocalizedString("您最近没有玩过游戏。", comment: "")
         case (1, .recent): return " " // Return non-empty string since empty string changes vertical offset of section for some reason.
-        case (1, .manual): return NSLocalizedString("You may have up to 4 shortcuts.", comment: "")
+        case (1, .manual): return NSLocalizedString("您最多可以有 4 个快捷方式。", comment: "")
             
         default: return nil
         }
@@ -314,7 +314,7 @@ extension AppIconShortcutsViewController
     
     override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String?
     {
-        return NSLocalizedString("Remove", comment: "")
+        return NSLocalizedString("移除", comment: "")
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle

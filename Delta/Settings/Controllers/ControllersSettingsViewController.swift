@@ -168,7 +168,7 @@ private extension ControllersSettingsViewController
             }
             
         case .customizeControls:
-            cell.textLabel?.text = NSLocalizedString("Customize Controls…", comment: "")
+            cell.textLabel?.text = NSLocalizedString("自定义控制器…", comment: "")
             cell.textLabel?.textColor = self.view.tintColor
         }
     }
@@ -285,8 +285,8 @@ extension ControllersSettingsViewController
     {
         switch Section(rawValue: section)!
         {
-        case .localDevice: return NSLocalizedString("This Device", comment: "")
-        case .externalControllers: return NSLocalizedString("Game Controllers", comment: "")
+        case .localDevice: return NSLocalizedString("该设备", comment: "")
+        case .externalControllers: return NSLocalizedString("游戏控制器", comment: "")
         case .customizeControls: return nil
         }
     }
@@ -303,7 +303,7 @@ extension ControllersSettingsViewController
         case .externalControllers: self.gameController = self.connectedControllers[indexPath.row]
         case .customizeControls:
             guard let cell = tableView.cellForRow(at: indexPath) else { return }
-            self.performSegue(withIdentifier: "controllerInputsSegue", sender: cell)
+            self.performSegue(withIdentifier: "控制器输入序列", sender: cell)
             
             return
         }

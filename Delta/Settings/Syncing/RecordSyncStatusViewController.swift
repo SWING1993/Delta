@@ -15,9 +15,9 @@ extension RecordStatus
     fileprivate var localizedDescription: String {
         switch self
         {
-        case .normal: return NSLocalizedString("Normal", comment: "")
-        case .updated: return NSLocalizedString("Updated", comment: "")
-        case .deleted: return NSLocalizedString("Deleted", comment: "")
+        case .normal: return NSLocalizedString("标准的", comment: "")
+        case .updated: return NSLocalizedString("已更新", comment: "")
+        case .deleted: return NSLocalizedString("已删除", comment: "")
         }
     }
 }
@@ -147,7 +147,7 @@ private extension RecordSyncStatusViewController
         }
         catch
         {
-            let title = sender.isOn ? NSLocalizedString("Failed to Enable Syncing", comment: "") : NSLocalizedString("Failed to Disable Syncing", comment: "")
+            let title = sender.isOn ? NSLocalizedString("无法启用同步", comment: "") : NSLocalizedString("无法禁用同步", comment: "")
             
             let alertController = UIAlertController(title: title, error: error)
             self.present(alertController, animated: true, completion: nil)
@@ -170,12 +170,12 @@ extension RecordSyncStatusViewController
             
             if self.record?.isConflicted == true
             {
-                cell.textLabel?.text = NSLocalizedString("Resolve Conflict", comment: "")
+                cell.textLabel?.text = NSLocalizedString("解决冲突", comment: "")
                 cell.textLabel?.textColor = .red
             }
             else
             {
-                cell.textLabel?.text = NSLocalizedString("View Versions", comment: "")
+                cell.textLabel?.text = NSLocalizedString("查看版本", comment: "")
                 cell.textLabel?.textColor = .deltaPurple
             }
             

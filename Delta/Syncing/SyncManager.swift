@@ -28,13 +28,13 @@ extension SyncManager
         var localizedName: String {
             switch self
             {
-            case .game: return NSLocalizedString("Game", comment: "")
-            case .gameCollection: return NSLocalizedString("Game Collection", comment: "")
-            case .cheat: return NSLocalizedString("Cheat", comment: "")
-            case .saveState: return NSLocalizedString("Save State", comment: "")
-            case .controllerSkin: return NSLocalizedString("Controller Skin", comment: "")
-            case .gameControllerInputMapping: return NSLocalizedString("Game Controller Input Mapping", comment: "")
-            case .gameSave: return NSLocalizedString("Game Save", comment: "")
+            case .game: return NSLocalizedString("游戏", comment: "")
+            case .gameCollection: return NSLocalizedString("游戏合集", comment: "")
+            case .cheat: return NSLocalizedString("金手指", comment: "")
+            case .saveState: return NSLocalizedString("存档", comment: "")
+            case .controllerSkin: return NSLocalizedString("控制器皮肤", comment: "")
+            case .gameControllerInputMapping: return NSLocalizedString("游戏控制器输入映射", comment: "")
+            case .gameSave: return NSLocalizedString("游戏存档", comment: "")
             }
         }
     }
@@ -68,7 +68,7 @@ extension SyncManager
         var errorDescription: String? {
             switch self
             {
-            case .nilService: return NSLocalizedString("There is no chosen service for syncing.", comment: "")
+            case .nilService: return NSLocalizedString("没有选择的同步服务。", comment: "")
             }
         }
     }

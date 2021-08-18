@@ -65,7 +65,7 @@ private extension InputCalloutView
         switch self.state
         {
         case .normal: self.textLabel.text = self.input?.localizedName
-        case .listening: self.textLabel.text = NSLocalizedString("Press Button", comment: "")
+        case .listening: self.textLabel.text = NSLocalizedString("按下按钮", comment: "")
         }
         
         self.updateTintColor()

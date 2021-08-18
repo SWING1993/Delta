@@ -10,7 +10,7 @@ import UIKit
 
 struct GamesDatabaseImportOption: ImportOption
 {
-    let title = NSLocalizedString("Games Database", comment: "")
+    let title = NSLocalizedString("游戏数据库", comment: "")
     let image: UIImage? = nil
     
     private let presentingViewController: UIViewController

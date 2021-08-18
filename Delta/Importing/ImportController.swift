@@ -77,7 +77,7 @@ class ImportController: NSObject
                 }
             }
             
-            let filesAction = UIAlertAction(title: NSLocalizedString("Files", comment: ""), style: .default) { (action) in
+            let filesAction = UIAlertAction(title: NSLocalizedString("文件", comment: ""), style: .default) { (action) in
                 self.presentDocumentBrowser()
             }
             alertController.addAction(filesAction)

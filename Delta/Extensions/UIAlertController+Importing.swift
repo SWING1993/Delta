@@ -39,15 +39,15 @@ extension UIAlertController
         
         if let fileURL = urls.first, let error = errors.first, errors.count == 1
         {
-            title = String(format: NSLocalizedString("Could not import “%@”.", comment: ""), fileURL.lastPathComponent)
+            title = String(format: NSLocalizedString("无法导入“%@”.", comment: ""), fileURL.lastPathComponent)
             message = error.localizedDescription
         }
         else
         {
             switch importType
             {
-            case .games: title = NSLocalizedString("Error Importing Games", comment: "")
-            case .controllerSkins: title = NSLocalizedString("Error Importing Controller Skins", comment: "")
+            case .games: title = NSLocalizedString("导入游戏时出错", comment: "")
+            case .controllerSkins: title = NSLocalizedString("导入控制器皮肤时出错", comment: "")
             }
             
             if urls.count > 0
@@ -56,8 +56,8 @@ extension UIAlertController
                 
                 switch importType
                 {
-                case .games: tempMessage = NSLocalizedString("The following game files could not be imported:", comment: "") + "\n"
-                case .controllerSkins: tempMessage = NSLocalizedString("The following controller skin files could not be imported:", comment: "") + "\n"
+                case .games: tempMessage = NSLocalizedString("无法导入以下游戏文件：", comment: "") + "\n"
+                case .controllerSkins: tempMessage = NSLocalizedString("无法导入以下控制器皮肤文件：", comment: "") + "\n"
                 }
                 
                 let filenames = urls.map { $0.lastPathComponent }.sorted()
@@ -74,8 +74,8 @@ extension UIAlertController
                 
                 switch importType
                 {
-                case .games: message = NSLocalizedString("Delta was unable to import games. Please try again later.", comment: "")
-                case .controllerSkins: message = NSLocalizedString("Delta was unable to import controller skins. Please try again later.", comment: "")
+                case .games: message = NSLocalizedString("Delta 无法导入游戏，请稍后再试。", comment: "")
+                case .controllerSkins: message = NSLocalizedString("Delta 无法导入控制器皮肤，请稍后再试。", comment: "")
                 }
             }
         }

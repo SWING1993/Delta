@@ -13,7 +13,7 @@ import Roxas
 
 struct ClipboardImportOption: ImportOption
 {
-    let title = NSLocalizedString("Clipboard", comment: "")
+    let title = NSLocalizedString("剪贴板", comment: "")
     let image: UIImage? = nil
     
     func `import`(withCompletionHandler completionHandler: @escaping (Set<URL>?) -> Void)

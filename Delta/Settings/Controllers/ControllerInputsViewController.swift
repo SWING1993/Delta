@@ -180,7 +180,7 @@ private extension ControllerInputsViewController
     func preparePopoverMenuController()
     {
         let listMenuViewController = ListMenuViewController()
-        listMenuViewController.title = NSLocalizedString("Game System", comment: "")
+        listMenuViewController.title = NSLocalizedString("游戏系统", comment: "")
         
         let navigationController = UINavigationController(rootViewController: listMenuViewController)
         
@@ -214,15 +214,15 @@ private extension ControllerInputsViewController
             {
             case .quickSave:
                 image = #imageLiteral(resourceName: "SaveSaveState")
-                text = NSLocalizedString("Quick Save", comment: "")
+                text = NSLocalizedString("快速保存", comment: "")
                 
             case .quickLoad:
                 image = #imageLiteral(resourceName: "LoadSaveState")
-                text = NSLocalizedString("Quick Load", comment: "")
+                text = NSLocalizedString("快速加载", comment: "")
                 
             case .fastForward:
                 image = #imageLiteral(resourceName: "FastForward")
-                text = NSLocalizedString("Fast Forward", comment: "")
+                text = NSLocalizedString("快进", comment: "")
                 
             case .toggleFastForward: continue
             }
@@ -404,7 +404,7 @@ private extension ControllerInputsViewController
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(.cancel)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Reset Controls to Defaults", comment: ""), style: .destructive, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("将控制器重置为默认值", comment: ""), style: .destructive, handler: { (action) in
             reset()
         }))
         self.present(alertController, animated: true, completion: nil)

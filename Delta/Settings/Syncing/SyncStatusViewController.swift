@@ -109,8 +109,8 @@ private extension SyncStatusViewController
         dynamicDataSource.cellConfigurationHandler = { (cell, _, indexPath) in }
         
         let placeholderView = RSTPlaceholderView()
-        placeholderView.textLabel.text = NSLocalizedString("No Games", comment: "")
-        placeholderView.detailTextLabel.text = NSLocalizedString("Check back here after adding games to Delta to see their sync status.", comment: "")
+        placeholderView.textLabel.text = NSLocalizedString("没有游戏", comment: "")
+        placeholderView.detailTextLabel.text = NSLocalizedString("将游戏添加到 Delta 后返回此处查看它们的同步状态。", comment: "")
         
         let dataSource = RSTCompositeTableViewDataSource(dataSources: [dynamicDataSource, fetchedDataSource])
         dataSource.proxy = self
@@ -159,7 +159,7 @@ private extension SyncStatusViewController
                 self.gameConflictsCount = [:]
                 
                 DispatchQueue.main.async {
-                    let alertController = UIAlertController(title: NSLocalizedString("Failed to Get Sync Status", comment: ""),
+                    let alertController = UIAlertController(title: NSLocalizedString("无法获取同步状态", comment: ""),
                                                             message: error.localizedDescription,
                                                             preferredStyle: .alert)
                     alertController.addAction(.ok)

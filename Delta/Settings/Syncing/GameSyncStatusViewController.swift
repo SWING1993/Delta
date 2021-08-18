@@ -97,11 +97,11 @@ private extension GameSyncStatusViewController
         gameDataSource.cellConfigurationHandler = { (cell, item, indexPath) in
             if item is Game
             {
-                cell.textLabel?.text = NSLocalizedString("Game", comment: "")
+                cell.textLabel?.text = NSLocalizedString("游戏", comment: "")
             }
             else
             {
-                cell.textLabel?.text = NSLocalizedString("Game Save", comment: "")
+                cell.textLabel?.text = NSLocalizedString("游戏存档", comment: "")
             }
             
             configure(cell, item)
@@ -174,8 +174,8 @@ extension GameSyncStatusViewController
         switch Section.allCases[section]
         {
         case .game: return nil
-        case .saveStates: return NSLocalizedString("Save States", comment: "")
-        case .cheats: return NSLocalizedString("Cheats", comment: "")
+        case .saveStates: return NSLocalizedString("存档", comment: "")
+        case .cheats: return NSLocalizedString("金手指", comment: "")
         }
     }
 }

@@ -178,13 +178,13 @@ private extension RecordVersionsViewController
         switch self.mode
         {
         case .restoreVersion:
-            self.restoreButton.title = NSLocalizedString("Restore", comment: "")
+            self.restoreButton.title = NSLocalizedString("恢复", comment: "")
             self.restoreButton.tintColor = .deltaPurple
             
             self.restoreButton.isEnabled = (self._selectedVersionIndexPath?.section == Section.remote.rawValue)
             
         case .resolveConflict:
-            self.restoreButton.title = NSLocalizedString("Resolve", comment: "")
+            self.restoreButton.title = NSLocalizedString("解决", comment: "")
             self.restoreButton.tintColor = .red
             
             self.restoreButton.isEnabled = (self._selectedVersionIndexPath != nil)
@@ -225,7 +225,7 @@ private extension RecordVersionsViewController
             catch
             {
                 DispatchQueue.main.async {
-                    let alertController = UIAlertController(title: NSLocalizedString("Failed to Fetch Record Versions", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: NSLocalizedString("获取记录版本失败", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
                     alertController.addAction(.ok)
                     self.present(alertController, animated: true, completion: nil)
                 }
@@ -278,8 +278,8 @@ private extension RecordVersionsViewController
                     
                     switch self.mode
                     {
-                    case .restoreVersion: title = NSLocalizedString("Failed to Restore Version", comment: "")
-                    case .resolveConflict: title = NSLocalizedString("Failed to Resolve Conflict", comment: "")
+                    case .restoreVersion: title = NSLocalizedString("恢复版本失败", comment: "")
+                    case .resolveConflict: title = NSLocalizedString("未能解决冲突", comment: "")
                     }
                     
                     let alertController = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
@@ -341,20 +341,20 @@ private extension RecordVersionsViewController
         switch self.mode
         {
         case .restoreVersion:
-            message = NSLocalizedString("Restoring a remote version will cause any local changes to be lost.", comment: "")
-            actionTitle = NSLocalizedString("Restore Version", comment: "")
+            message = NSLocalizedString("恢复远程版本将导致任何本地更改丢失。", comment: "")
+            actionTitle = NSLocalizedString("恢复版本", comment: "")
             
         case .resolveConflict:
             if self._selectedVersionIndexPath?.section == Section.local.rawValue
             {
-                message = NSLocalizedString("The local version will be uploaded and synced to your other devices.", comment: "")
+                message = NSLocalizedString("本地版本将上传并同步到您的其他设备。", comment: "")
             }
             else
             {
-                message = NSLocalizedString("Selecting a remote version will cause any local changes to be lost.", comment: "")
+                message = NSLocalizedString("选择远程版本将导致任何本地更改丢失。", comment: "")
             }
             
-            actionTitle = NSLocalizedString("Resolve Conflict", comment: "")
+            actionTitle = NSLocalizedString("解决冲突", comment: "")
         }
         
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
@@ -373,8 +373,8 @@ extension RecordVersionsViewController
     {
         switch Section.allCases[section]
         {
-        case .local: return NSLocalizedString("On Device", comment: "")
-        case .remote: return NSLocalizedString("Cloud", comment: "")
+        case .local: return NSLocalizedString("在设备上", comment: "")
+        case .remote: return NSLocalizedString("云端", comment: "")
         }
     }
     

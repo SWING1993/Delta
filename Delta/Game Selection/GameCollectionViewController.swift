@@ -484,7 +484,7 @@ private extension GameCollectionViewController
     
     func delete(_ game: Game)
     {
-        let confirmationAlertController = UIAlertController(title: NSLocalizedString("你确定要删除这个游戏吗？所有相关数据（如保存、保存状态和作弊代码）也将被删除。", comment: ""), message: nil, preferredStyle: .actionSheet)
+        let confirmationAlertController = UIAlertController(title: NSLocalizedString("你确定要删除这个游戏吗？所有相关数据也将被删除。", comment: ""), message: nil, preferredStyle: .actionSheet)
         confirmationAlertController.addAction(UIAlertAction(title: NSLocalizedString("删除游戏", comment: ""), style: .destructive, handler: { action in
             
             DatabaseManager.shared.performBackgroundTask { (context) in

@@ -48,12 +48,12 @@ extension SyncResultViewController
 extension Record
 {
     var localizedTitle: String {
-        guard let type = SyncManager.RecordType(rawValue: self.recordID.type) else { return self.localizedName ?? NSLocalizedString("Unknown", comment: "") }
+        guard let type = SyncManager.RecordType(rawValue: self.recordID.type) else { return self.localizedName ?? NSLocalizedString("未知", comment: "") }
         
         switch type
         {
-        case .game: return NSLocalizedString("Game", comment: "")
-        case .gameSave: return NSLocalizedString("Game Save", comment: "")
+        case .game: return NSLocalizedString("游戏", comment: "")
+        case .gameSave: return NSLocalizedString("游戏存档", comment: "")
         case .saveState, .cheat, .controllerSkin, .gameCollection, .gameControllerInputMapping: return self.localizedName ?? type.localizedName
         }
     }
@@ -149,7 +149,7 @@ private extension SyncResultViewController
                         
                         if isRestricted
                         {
-                            errorMessage = NSLocalizedString("Dropbox has flagged this game as copyrighted material, so it cannot be downloaded. Please re-import this game to continue syncing.", comment: "")
+                            errorMessage = NSLocalizedString("Dropbox 已将此游戏标记为受版权保护的材料，因此无法下载。请重新导入此游戏以继续同步。", comment: "")
                         }
                         else
                         {
@@ -166,11 +166,11 @@ private extension SyncResultViewController
                     case .other(_, ValidationError.nilRelationshipObjects(let relationships)) where relationships.contains("game"):
                         if let gameName = error.record.localMetadata?[.gameName] ?? error.record.remoteMetadata?[.gameName]
                         {
-                            errorMessage = String(format: NSLocalizedString("“%@“ is missing. Please re-import this game to resume syncing its data.", comment: ""), gameName)
+                            errorMessage = String(format: NSLocalizedString("“%@“不见了，请重新导入此游戏以继续同步其数据。", comment: ""), gameName)
                         }
                         else
                         {
-                            errorMessage = NSLocalizedString("The game for this item is missing. Please re-import the game to resume syncing its data.", comment: "")
+                            errorMessage = NSLocalizedString("缺少此物品的游戏，请重新导入游戏以继续同步其数据。", comment: "")
                         }
                         
                     case .other(_, let error as NSError): errorMessage = error.localizedFailureReason ?? error.localizedDescription
@@ -196,8 +196,8 @@ private extension SyncResultViewController
         }
         
         let placeholderView = RSTPlaceholderView()
-        placeholderView.textLabel.text = NSLocalizedString("Sync Successful", comment: "")
-        placeholderView.detailTextLabel.text = NSLocalizedString("There were no errors during last sync.", comment: "")
+        placeholderView.textLabel.text = NSLocalizedString("同步成功", comment: "")
+        placeholderView.detailTextLabel.text = NSLocalizedString("上次同步期间没有错误。", comment: "")
         
         let compositeDataSource = RSTCompositeTableViewDataSource(dataSources: dataSources)
         compositeDataSource.proxy = self
@@ -380,10 +380,10 @@ extension SyncResultViewController
         
         switch section.group
         {
-        case .controllerSkin: return NSLocalizedString("Controller Skins", comment: "")
-        case .gameCollection: return NSLocalizedString("Game Collections", comment: "")
-        case .gameControllerInputMapping: return NSLocalizedString("Input Mappings", comment: "")
-        case .other: return NSLocalizedString("Misc.", comment: "")
+        case .controllerSkin: return NSLocalizedString("控制器皮肤", comment: "")
+        case .gameCollection: return NSLocalizedString("游戏集合", comment: "")
+        case .gameControllerInputMapping: return NSLocalizedString("输入映射", comment: "")
+        case .other: return NSLocalizedString("杂项.", comment: "")
             
         case .game:
             guard let error = section.errors.first as? RecordError else { return nil }
@@ -394,11 +394,11 @@ extension SyncResultViewController
             
             if let gameName = self.gameNamesByRecordID[gameID] ?? error.record.localMetadata?[.gameName] ?? error.record.remoteMetadata?[.gameName]
             {
-                return gameName + " - " + NSLocalizedString("Save States", comment: "")
+                return gameName + " - " + NSLocalizedString("存档", comment: "")
             }
             else
             {
-                return NSLocalizedString("Save States", comment: "")
+                return NSLocalizedString("存档", comment: "")
             }
             
         case .cheat(let gameID):
@@ -406,11 +406,11 @@ extension SyncResultViewController
             
             if let gameName = self.gameNamesByRecordID[gameID] ?? error.record.localMetadata?[.gameName] ?? error.record.remoteMetadata?[.gameName]
             {
-                return gameName + " - " + NSLocalizedString("Cheats", comment: "")
+                return gameName + " - " + NSLocalizedString("金手指", comment: "")
             }
             else
             {
-                return NSLocalizedString("Cheats", comment: "")
+                return NSLocalizedString("金手指", comment: "")
             }
         }
     }

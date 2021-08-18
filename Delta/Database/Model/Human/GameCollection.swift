@@ -15,11 +15,11 @@ import Harmony
 public class GameCollection: _GameCollection
 {
     @objc var name: String {
-        return self.system?.localizedName ?? NSLocalizedString("Unknown", comment: "")
+        return self.system?.localizedName ?? NSLocalizedString("未知", comment: "")
     }
     
     @objc var shortName: String {
-        return self.system?.localizedShortName ?? NSLocalizedString("Unknown", comment: "")
+        return self.system?.localizedShortName ?? NSLocalizedString("未知", comment: "")
     }
     
     var system: System? {

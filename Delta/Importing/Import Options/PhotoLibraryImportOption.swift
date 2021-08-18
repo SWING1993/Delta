@@ -11,7 +11,7 @@ import MobileCoreServices
 
 class PhotoLibraryImportOption: NSObject, ImportOption
 {
-    let title = NSLocalizedString("Photo Library", comment: "")
+    let title = NSLocalizedString("照片库", comment: "")
     let image: UIImage? = nil
     
     private let presentingViewController: UIViewController

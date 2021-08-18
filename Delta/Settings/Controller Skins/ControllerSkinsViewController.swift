@@ -59,7 +59,7 @@ extension ControllerSkinsViewController
         self.tableView.dataSource = self.dataSource
         self.tableView.prefetchDataSource = self.dataSource
         
-        self.importControllerSkinButton.accessibilityLabel = NSLocalizedString("Import Controller Skin", comment: "")
+        self.importControllerSkinButton.accessibilityLabel = NSLocalizedString("导入控制器皮肤", comment: "")
         
         if !self.isResetButtonVisible
         {
@@ -138,7 +138,7 @@ private extension ControllerSkinsViewController
     {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(.cancel)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Reset Controller Skin to Default", comment: ""), style: .destructive, handler: { (action) in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("将控制器皮肤重置为默认值", comment: ""), style: .destructive, handler: { (action) in
             self.delegate?.controllerSkinsViewControllerDidResetControllerSkin(self)
         }))
         self.present(alertController, animated: true, completion: nil)
@@ -222,7 +222,7 @@ extension ControllerSkinsViewController: ImportControllerDelegate
             DispatchQueue.main.async {
                 self.transitionCoordinator?.animate(alongsideTransition: nil) { _ in
                     // Wait until ImportController is dismissed before presenting alert.
-                    let alertController = UIAlertController(title: NSLocalizedString("Failed to Import Controller Skin", comment: ""), error: error)
+                    let alertController = UIAlertController(title: NSLocalizedString("导入控制器皮肤失败", comment: ""), error: error)
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
